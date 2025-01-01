@@ -27,19 +27,29 @@ class TaskManager:
         else:
             print("Invalid task index..")
 
+    def write_tasks(self, filename):
+        """
+        This method writes the list of tasks to a file
+        """
+        with open(filename, 'w') as file:
+            for task in self.tasks:
+                status = "Completed" if task.completed else "Pending"
+                file.write(f"{task.description} - {status}\n")
+
     def dummy_method(self):
         print("Welcome to the Task Management System program!")
 
 def main():
     task_manager = TaskManager()
     task_manager.dummy_method()
-
+    
     while True:
         print("\nTask Management System")
         print("1. Add Task")
         print("2. View Tasks")
         print("3. Mark Task as Completed")
         print("4. Exit")
+
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -57,6 +67,6 @@ def main():
             break
         else:
             print("Invalid choice. Please try again.")
-    
+
 if __name__ == "__main__":
     main()
